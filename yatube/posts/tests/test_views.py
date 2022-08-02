@@ -1,4 +1,5 @@
 # posts/tests/test_views.py
+from django.urls import reverse
 from django.core.cache import cache
 from collections import namedtuple
 from django import forms
@@ -336,9 +337,7 @@ class PostViewTests(DataTestCase):
         with self.subTest(url=url):
             self.assertRedirects(
                 response_unauthorised,
-                self.url_add_comment.get_redirect_with_id(
-                    self.test_comment.post.id
-                )
+                reverse('users:login')
             )
             self.assertEqual(
                 comments_number_after,

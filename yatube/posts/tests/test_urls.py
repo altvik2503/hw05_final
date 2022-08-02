@@ -23,7 +23,6 @@ class PostURLTests(DataTestCase):
         cls.urls_for_redirect = (
             cls.url_create,
             cls.url_edit,
-            cls.url_add_comment,
         )
         cls.urls_matches_template = (
             cls.url_main_page,

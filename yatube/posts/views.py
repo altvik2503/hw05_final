@@ -101,7 +101,6 @@ def post_edit(request, post_id):
     return render(request, 'posts/create_post.html', context)
 
 
-@login_required
 def add_comment(request, post_id):
     if request.user.is_authenticated:
         post = get_object_or_404(Post, id=post_id)
@@ -111,7 +110,8 @@ def add_comment(request, post_id):
             comment.author = request.user
             comment.post = post
             comment.save()
-    return redirect('posts:post_detail', post_id)
+        return redirect('posts:post_detail', post_id)
+    return redirect('users:login')
 
 
 @login_required
