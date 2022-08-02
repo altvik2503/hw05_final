@@ -408,10 +408,10 @@ class PostViewTests(DataTestCase):
         count_before_followed = (len(response.context['page_obj']))
 
         self.authorized_client.force_login(self.author2)
-        
+
         response = self.authorized_client.get(url_unfollowed)
         count_before_unfollowed = (len(response.context.get('page_obj')))
-        
+
         self.authorized_client.force_login(self.authorized_user)
         Post.objects.create(
             text=self.fake.text(),
