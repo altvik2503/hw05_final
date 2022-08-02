@@ -19,7 +19,7 @@ User = get_user_model()
 
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
-TestComment = namedtuple('TestComment', ('text',  'author', 'post'))
+TestComment = namedtuple('TestComment', ('text', 'author', 'post'))
 TestFollow = namedtuple('TestFollow', ('author', 'user'))
 TestPost = namedtuple('TestPost', ('text', 'group', 'author', 'image'))
 TestGroup = namedtuple('TestGroup', ('title', 'slug', 'description'))
@@ -91,7 +91,7 @@ class DataTestCase(TestCase):
         super().setUpClass()
 
         cls.fake = Faker()
-        
+
         # Create base urls
         cls.url_main_page = UrlViewData(
             url='/',
@@ -105,10 +105,10 @@ class DataTestCase(TestCase):
             kwargs='slug: test_slug'
         )
         cls.url_group2 = UrlViewData(
-                url='/group/slug2/',
-                name='posts:group_list',
-                template='posts/group_list.html',
-                kwargs='slug: slug2'
+            url='/group/slug2/',
+            name='posts:group_list',
+            template='posts/group_list.html',
+            kwargs='slug: slug2'
         )
         cls.url_auth = UrlViewData(
             url='/profile/auth/',
@@ -174,14 +174,14 @@ class DataTestCase(TestCase):
 
         # Create test_groups
         cls.test_group = TestGroup(
-            title = cls.fake.text(),
-            slug = 'test_slug',
-            description = cls.fake.text(),
+            title=cls.fake.text(),
+            slug='test_slug',
+            description=cls.fake.text(),
         )
         cls.test_group2 = TestGroup(
-            title = cls.fake.text(),
-            slug = 'slug2',
-            description = cls.fake.text(),
+            title=cls.fake.text(),
+            slug='slug2',
+            description=cls.fake.text(),
         )
         cls.group = Group.objects.create(**cls.test_group._asdict())
         cls.group2 = Group.objects.create(**cls.test_group2._asdict())
@@ -221,7 +221,7 @@ class DataTestCase(TestCase):
             image=cls.image,
         )
         cls.post = Post.objects.create(**cls.test_post._asdict())
-        
+
         # Create test comment
         cls.test_comment = TestComment(
             text=cls.fake.text(),

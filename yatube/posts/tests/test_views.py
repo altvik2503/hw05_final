@@ -1,5 +1,4 @@
 # posts/tests/test_views.py
-from django.urls import reverse
 from django.core.cache import cache
 from collections import namedtuple
 from django import forms
@@ -79,7 +78,6 @@ class PostViewTests(DataTestCase):
                 group_id=test_post.group,
             )) for i in range(range_from, range_to)])
             range_from += number
-
 
     @classmethod
     def tearDownClass(cls):
@@ -344,7 +342,7 @@ class PostViewTests(DataTestCase):
             )
             self.assertEqual(
                 comments_number_after,
-                comments_number_before+1
+                comments_number_before + 1
             )
 
     def test_authorized_client_follow_and_unfollow(self):
@@ -383,7 +381,7 @@ class PostViewTests(DataTestCase):
         with self.subTest(author=self.test_follow.author.username):
             self.assertEqual(
                 follows_number_authorized,
-                follows_number_base+1
+                follows_number_base + 1
             )
             self.assertEqual(
                 follows_number_unauthorized,
@@ -419,11 +417,11 @@ class PostViewTests(DataTestCase):
             text=self.fake.text(),
             author=self.test_follow.author,
         )
-        
+
         # Post.objects.create(**self.test_post._asdict())
         response = self.authorized_client.get(url_followed)
         count_after_followed = (len(response.context.get('page_obj')))
-        
+
         self.authorized_client.force_login(self.author2)
 
         response = self.authorized_client.get(url_unfollowed)
@@ -431,7 +429,7 @@ class PostViewTests(DataTestCase):
 
         with self.subTest(url=url_followed):
             self.assertEqual(
-                count_before_followed+1,
+                count_before_followed + 1,
                 count_after_followed
             )
             self.assertEqual(

@@ -33,8 +33,8 @@ urlpatterns = [
     path(
         'password_change/',
         PasswordChangeView.as_view(
-            template_name = 'users/password_change_form.html',
-            success_url = reverse_lazy('auth:password_change_done')
+            template_name='users/password_change_form.html',
+            success_url=reverse_lazy('auth:password_change_done')
         ),
         name='password_change',
     ),
@@ -49,8 +49,8 @@ urlpatterns = [
     path(
         'password_reset/',
         PasswordResetView.as_view(
-            template_name = 'users/password_reset_form.html',
-            success_url = reverse_lazy('auth:password_reset_done')
+            template_name='users/password_reset_form.html',
+            success_url=reverse_lazy('auth:password_reset_done')
         ),
         name='password_reset',
     ),
@@ -65,7 +65,7 @@ urlpatterns = [
         'reset/<uidb64>/<token>//',
         PasswordResetConfirmView.as_view(
             template_name='users/password_reset_confirm.html',
-            success_url = reverse_lazy('auth:password_reset_complete')
+            success_url=reverse_lazy('auth:password_reset_complete')
         ),
         name='password_reset_confirm'),
     # Подтверждение об успешном восстановлении пароля

@@ -55,7 +55,7 @@ class PostFormTests(DataTestCase):
 
         self.authorized_client.post(
             url,
-            data = changed_form_data._asdict(),
+            data=changed_form_data._asdict(),
             follow=True,
         )
 
@@ -83,7 +83,7 @@ class PostFormTests(DataTestCase):
 
         self.client.post(
             url,
-            data = changed_form_data._asdict(),
+            data=changed_form_data._asdict(),
             follow=True,
         )
 

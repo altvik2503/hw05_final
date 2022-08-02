@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import login_required
-from .models import Follow, Group, Post, User, Comment
+from .models import Follow, Group, Post, User
 from .forms import PostForm, CommentForm
 
 NUMBER_DISPLAYED_POSTS = 10
@@ -119,9 +119,11 @@ def follow_index(request):
     user = request.user
     follows_list = Follow.objects.filter(user=user)
     authors_list = set()
-    for follow in follows_list :
+    for follow in follows_list:
         authors_list.add(follow.author)
-    posts_list = Post.objects.filter(author__in=authors_list).select_related('group', 'author')
+    posts_list = Post.objects.filter(
+        author__in=authors_list
+    ).select_related('group', 'author')
     page_obj = paginator_get_page(posts_list, request)
     context = {
         'page_obj': page_obj,

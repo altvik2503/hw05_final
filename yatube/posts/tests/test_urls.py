@@ -35,7 +35,6 @@ class PostURLTests(DataTestCase):
             cls.url_follow_list,
         )
 
-
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
