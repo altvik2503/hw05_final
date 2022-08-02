@@ -418,7 +418,6 @@ class PostViewTests(DataTestCase):
             author=self.test_follow.author,
         )
 
-        # Post.objects.create(**self.test_post._asdict())
         response = self.authorized_client.get(url_followed)
         count_after_followed = (len(response.context.get('page_obj')))
 
