@@ -1,0 +1,18 @@
+{% extends "users_base.html" %}
+
+{% block title %}Зарегистрироваться{% endblock %}
+
+{% block card_header %}Зарегистрироваться{% endblock %}
+
+{% block card_body %}
+  {% include 'users/includes/form_errors.html'  %}
+  <form method="post" action="{% url 'auth:signup' %}">
+    {% csrf_token %}
+    {% include 'users/includes/form_fields.html'  %}
+    <div class="col-md-6 offset-md-4">
+      <button type="submit" class="btn btn-primary">
+        Зарегистрироваться
+      </button>
+    </div>
+  </form>
+{% endblock %}

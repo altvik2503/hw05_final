@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Об авторе проекта{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <h1>Виктор Алтунин</h1>
+        <p>
+          Я сейчас студент Яндекс.Практикума. До этого студент ЛЭТИ, инженер
+          НИИ, разработчик медицинких приборов на малом предприятии, главный
+          инженер производства.
+        </p>
+        <p>
+          Радиоэлектроника, компьютеры, программирование всю жизнь, ещё со
+          школы, были моим хобби. И вот я решил, что пора уже заняться в жизни
+          тем, что по-настоящему нравится.
+        </p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <img src="{% static 'img/author.png' %}" width="100%" height="100%">
+      </div>
+    </div>
+  </div>
+  <div class="container" >
+    <div class="row">
+      <div class="col-12">
+        <h2>Мои работы</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+        <p><a href="https://github.com/altvik2503/backend_test_homework/">Мой первый commit</a></p>
+        <p><a href="https://github.com/altvik2503/hw_python_oop/">Мой первый проект</a></p>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+        <p><a href="https://github.com/altvik2503/hw02_community/">Мой первый сайт</a></p>
+        <p><a href="https://github.com/altvik2503/hw03_forms/">Сайт развивается — это круто</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2>Контакты для связи</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <p>Телефон: +7 (960) 287-56-26</p>
+        <p>Почта: <a href="mailto: altvik@yandex.ru">altvik@yandex.ru</a></p>
+        <p>Вотсап: Виктор Алтунин</p>
+        <p>Телеграм: @altvik25003</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

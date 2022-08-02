@@ -1,0 +1,9 @@
+Автор:
+{% if post.author.get_full_name == '' %}
+  {{ post.author.username }}
+{% else %}
+  {{ post.author.get_full_name }}
+{% endif %}
+<a href="{% url 'posts:profile' post.author.username %}">
+  все посты пользователя
+</a>
