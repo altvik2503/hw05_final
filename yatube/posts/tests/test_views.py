@@ -337,7 +337,9 @@ class PostViewTests(DataTestCase):
         with self.subTest(url=url):
             self.assertRedirects(
                 response_unauthorised,
-                reverse('users:login')
+                self.url_add_comment.get_redirect_to_login(
+                    self.test_comment.post.id
+                )
             )
             self.assertEqual(
                 comments_number_after,

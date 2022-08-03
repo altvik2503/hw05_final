@@ -52,8 +52,9 @@ class UrlViewData():
     template: str = None
     redirect: str = None
     accessed_authorised_client: bool = False
-    status: HTTPStatus = HTTPStatus.OK
     kwargs: str = None
+    status: HTTPStatus = HTTPStatus.OK
+    login_url = reverse('users:login')
 
     def _get_attr_with_mask(self, field, mask, value=None):
         attr = None
@@ -71,6 +72,9 @@ class UrlViewData():
 
     def get_redirect_with_id(self, id=None):
         return self._get_attr_with_mask('redirect', '<id>', id)
+
+    def get_redirect_to_login(self, id=None):
+        return f'{self.login_url}?next={self.get_url_with_id(id)}'
 
     def get_url_from_name(self, id=None):
         kwards = self.kwargs
