@@ -1,5 +1,4 @@
 # posts/tests/test_views.py
-from django.urls import reverse
 from django.core.cache import cache
 from collections import namedtuple
 from django import forms
