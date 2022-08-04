@@ -20,10 +20,6 @@ class PostURLTests(DataTestCase):
             cls.url_create,
             cls.url_edit,
         )
-        cls.urls_for_redirect = (
-            cls.url_create,
-            cls.url_edit, 
-        )
         cls.urls_matches_template = (
             cls.url_main_page,
             cls.url_group,
@@ -74,8 +70,6 @@ class PostURLTests(DataTestCase):
             ),
         )
         for url, redirect in urls_for_redirect:
-            # url = test_url.get_url_with_id(self.post.id)
-            # redirect = test_url.get_redirect_to_login(self.post.id)
             with self.subTest(url=url):
                 response = self.client.get(url, follow=True)
                 self.assertRedirects(response, redirect)
