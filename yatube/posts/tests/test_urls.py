@@ -22,7 +22,7 @@ class PostURLTests(DataTestCase):
         )
         cls.urls_for_redirect = (
             cls.url_create,
-            cls.url_edit,
+            cls.url_edit, 
         )
         cls.urls_matches_template = (
             cls.url_main_page,
@@ -66,9 +66,16 @@ class PostURLTests(DataTestCase):
 
     def test_url_redirect_page(self):
         """Проверка страниц, недоступных неавторизованному пользователю."""
-        for test_url in self.urls_for_redirect:
-            url = test_url.get_url_with_id(self.post.id)
-            redirect = test_url.get_redirect_with_id(self.post.id)
+        urls_for_redirect = (
+            (self.url_create.url, '/?next=/create/'),
+            (
+                self.url_edit.get_url_with_id(self.post.id),
+                '/?next=' + self.url_edit.get_url_with_id(self.post.id)
+            ),
+        )
+        for url, redirect in urls_for_redirect:
+            # url = test_url.get_url_with_id(self.post.id)
+            # redirect = test_url.get_redirect_to_login(self.post.id)
             with self.subTest(url=url):
                 response = self.client.get(url, follow=True)
                 self.assertRedirects(response, redirect)

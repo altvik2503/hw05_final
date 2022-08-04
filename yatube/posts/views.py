@@ -25,7 +25,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts_list = group.posts.select_related('group', 'author')
+    posts_list = group.posts.select_related('author')
     page_obj = paginator_get_page(posts_list, request)
     context = {
         'page_obj': page_obj,
@@ -36,7 +36,7 @@ def group_posts(request, slug):
 
 def profile(request, username):
     author = get_object_or_404(User, username=username)
-    posts_list = author.posts.select_related('group', 'author')
+    posts_list = author.posts.select_related('group')
     page_obj = paginator_get_page(posts_list, request)
     following = None
     if request.user.is_authenticated:
@@ -54,7 +54,7 @@ def profile(request, username):
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     form = CommentForm()
-    comments = post.comments.select_related('post', 'author')
+    comments = post.comments.select_related('author')
     context = {
         'post': post,
         'title': post.text[:30],
@@ -64,22 +64,22 @@ def post_detail(request, post_id):
     return render(request, 'posts/post_detail.html', context)
 
 
+@login_required(login_url='/')
 def post_create(request):
-    if request.user.is_authenticated:
-        form = PostForm(request.POST or None)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            return redirect('posts:profile', post.author.username)
-        context = {
-            'form': form,
-            'title': 'Новый пост',
-        }
-        return render(request, 'posts/create_post.html', context)
-    return redirect('posts:index')
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
+        return redirect('posts:profile', post.author.username)
+    context = {
+        'form': form,
+        'title': 'Новый пост',
+    }
+    return render(request, 'posts/create_post.html', context)
 
 
+@login_required(login_url='/')
 def post_edit(request, post_id):
     post = Post.objects.select_related('author').get(id=post_id)
     if request.user != post.author:
