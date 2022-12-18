@@ -9,11 +9,12 @@
   <form
     method="post"
     enctype="multipart/form-data"
-    {% if is_edit %}
-      action="{% url 'posts:post_edit' form.instance.id %}"
-    {% else %}
-      action="{% url 'posts:post_create' %}"
-    {% endif %}>
+    action=
+      {% if is_edit %}
+        "{% url 'posts:post_edit' form.instance.id %}"
+      {% else %}
+        "{% url 'posts:post_create' %}"
+      {% endif %}>
     {% csrf_token %}
     {% include 'users/includes/form_fields.html'  %}
     <div class="d-flex justify-content-end">
