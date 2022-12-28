@@ -1,21 +1,19 @@
 import os
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CODE_DIR_PATH = os.path.join(BASE_DIR, 'yatube')
 sys.path.append(CODE_DIR_PATH)
 
-SECRET_KEY = '^ttz$x^-$!7l#kxtwjn3f!y*6gn^un*%td^7!6zx)prf*!)&lr'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
-    'www.altvik.pythonanywhere.com',
-    'altvik.pythonanywhere.com',
 ]
 
 # Application definition
@@ -31,11 +29,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
     'sorl.thumbnail',
-    # 'debug_toolbar',
 ]
 
 MIDDLEWARE = [
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,15 +116,16 @@ STATICFILES_DIRS = [
     STATICFILES_DIR,
 ]
 STATIC_URL = '/static/'
-
-LOGIN_URL = 'auth:login'
-LOGIN_REDIRECT_URL = 'posts:index'
-# LOGOUT_REDIRECT_URL = 'posts:index'
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'auth:login'
+LOGIN_REDIRECT_URL = 'posts:index'
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 CACHES = {
     'default': {
