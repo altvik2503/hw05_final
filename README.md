@@ -7,8 +7,10 @@
 git clone https://github.com/altvik2503/hw05_final.git
 cd hw05_final/
 python -m venv venv
-pip install -r yatube/requirements.txt
-python3 yatube/manage.py runserver
+. venv/scripts/activate
+pip install -r requirements.txt
+python yatube/manage.py migrate
+python yatube/manage.py runserver
 ```
 После этого сайт будет доступен по локальному адресу 127.0.0.1
 
@@ -23,3 +25,7 @@ sorl-thumbnail==12.7.0
 sqlparse==0.4.3
 python-dotenv-0.21.0
 ```
+
+В проекте используются технологии
+
+Django ORM, Bootstrap, CSS
